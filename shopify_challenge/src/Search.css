@@ -1,0 +1,21 @@
+.input {
+    width: 94%;
+    height: 40px;
+    font-size:24px;
+}
+
+.search {
+    padding: 15px;
+}
+
+#searchIcon {
+    font-size: 24px;
+    color: white;
+}
+
+button {
+    background: #25955f;
+    height: 46px;
+    width: 4%;
+    float: right;
+}
