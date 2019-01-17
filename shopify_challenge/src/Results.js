@@ -18,7 +18,7 @@ class Results extends PureComponent {
 
     render() {
         return (
-            <p>{this.props.results[0].keywords}</p>
+            <p>{this.props.results}</p>
         );
     }
 }
