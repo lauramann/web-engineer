@@ -9,7 +9,7 @@ class Search extends PureComponent {
         this.results_array = [];
     this.data_array = [];
         //Create our state variables
-        this.state = { value: '', data: [], results_arr: [], submitted: false, title: ''};
+        this.state = { value: '', dataArr: [], results_arr: [], submitted: false, title: ''};
 
         //Bind functions
         this.handleChange = this.handleChange.bind(this);
@@ -18,57 +18,32 @@ class Search extends PureComponent {
 
     //Function to set value to input value
     handleChange(event) {
+        // console.log(this.props.data.length)
         this.setState({ value: event.target.value });
     }
 
     //Function to handle submit
     //Fetches data from json
     handleSubmit(event) {
-        let copy = [];
         console.log('A name was submitted: ' + this.state.value);
-        fetch('https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000')
-            .then(response => response.json())
-            .then(data => {
-                this.data_array[0] = data;
-                this.setState({ data: data });
-                for (var i = 0; i < this.state.data.length - 1; i++) {
-            if (this.state.data[i].keywords.includes(this.state.value)) {
-                console.log(this.state.data[i])
-                copy.push(this.state.data[i])
-                console.log(copy.length)
-                this.setState({title: this.state.results_arr[0].title})
+
+            for (var i = 0; i < this.props.data.length - 1; i++) {
+            if (this.props.data[i].keywords.includes(this.state.value)) {
+                console.log(this.props.data[i])
+                this.results_array.push(this.props.data[i])
+                console.log(this.results_array.length)
+                // this.setState({title: this.state.results_arr[0].title})
             }
         }
-        console.log(this.state.title)
-        return <Results results={this.state.title} />
-                // console.log(this.state.dataSet)
-            })
-            // console.log(data_array);
-        // .then(data => {
-        //     this.setState({ data: data, title });
-        //     console.log(data);
-        //     return <Results results={this.state.data} />
-        // })
-            .catch(err => console.error(this.props.url, err.toString()));
+
         event.preventDefault();
-            console.log(this.data_array);
-
-        
-        // console.log(this.state.data)
-
-        this.setState({ submitted: true, results_arr: copy });
-        this.setState(prevState => ({
-            results_arr: [...prevState.results_arr, copy]
-          }));
-        //   console.log("results length: " + this.state.results_arr.length);
-        // console.log(copy.length)
-        // console.log(copy)
-        // console.log(this.state.results_arr);
+        this.setState({ submitted: true});
+        console.log(this.results_array.length)
     }
 
     renderResults() {
         // console.log(this.state.results_arr[0])
-        return <Results results={this.state.title} />
+        return <Results results={this.results_array} />
          } 
 
     render() {
