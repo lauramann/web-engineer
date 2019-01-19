@@ -13,9 +13,9 @@
     color: white;
 }
 
-button {
+.search-button {
     background: #25955f;
     height: 46px;
     width: 4%;
-    float: right;
+    /* float: right; */
 }

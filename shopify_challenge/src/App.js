@@ -14,19 +14,19 @@ class App extends Component {
 
   componentDidMount() {
     fetch('https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000')
-			.then(response => response.json())
-			.then(data => {
-        this.setState({data: data })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ data: data })
         console.log("worked")
-		})
-			.catch(err => console.error(this.props.url, err.toString()))
+      })
+      .catch(err => console.error(this.props.url, err.toString()))
   }
 
   render() {
     return (
       <div>
         <Header />
-        <Search data={this.state.data}/>
+        <Search data={this.state.data} />
       </div>
     );
   }
