@@ -1,22 +1,51 @@
 import React, { PureComponent } from "react";
 import "./Results.css";
+// import Favourites from "./Favourites";
 
 class Results extends PureComponent {
     constructor(props) {
         super(props);
-        this.reg = /(;|&...|\/|nbsp|strong)/g;
-        this.reg2 = /\&.*?\;/ig;
-        this.reg3 = /<\/?[^>]+>/gi;
-        // str = props.body.replace(/(^&|;$)/, '');
 
-        //Create our state variables
-        this.state = { value: '', data: '' };
-        this.listItems = props.results.map((item) =>
-            // <ul>
-            <div className="resultsDiv">
+        this.state = {
+            btn: 'greyStar',
+            index: 0
+       }
+
+        this.reg = /\&.*?\;/ig;
+        this.star = '#26995C';
+        this.getString = this.getString.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        // let btnId = this.state.grey ? "greyStar" : "greenStar";
+    }
+
+    handleClick(key) {
+        console.log(key);
+        this.setState({btn: 'greenStar'})
+        console.log(this.state.btn)
+    }
+
+    handleMouseOver() {
+        this.setState({btn: 'greenStar'})
+    }
+
+    getString(str) {
+        return str.replace(this.reg, '')
+
+    }
+
+    
+
+    render() {
+        return (
+            // <ul>{this.listItems}</ul>
+        // );
+        this.props.results.length < 1 ? <div><p>No items found</p></div> :
+        this.listItems = this.props.results.map((item, index) =>
+            <div className="resultsDiv" key={index}>
                 <div className="leftDiv">
-                <button onClick={this.handleSubmit} className="star-button">
-                            <i className="fa fa-star"id="star"></i>
+                <button onClick={() => this.handleClick(index)}  className="star-button">
+                            <i className="fa fa-star" id={this.state.btn}></i>
                         </button>
                     {item.title}
                 </div>
@@ -25,21 +54,7 @@ class Results extends PureComponent {
                 </div>
                 </div>
             // </ul>
-        );
-
-        this.getString = this.getString.bind(this);
-
-    }
-
-    getString(str) {
-        return str.replace(this.reg2, '')
-        // return str;
-
-    }
-
-    render() {
-        return (
-            <ul>{this.listItems}</ul>
+)
         );
     }
 }

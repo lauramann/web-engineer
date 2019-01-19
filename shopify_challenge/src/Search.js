@@ -20,7 +20,11 @@ class Search extends PureComponent {
     //Function to set value to input value
     handleChange(event) {
         
+        if(this.state.value==='') {
+            console.log("cleared");
+        }
         this.setState({ value: event.target.value });
+
         // console.log(this.state.value.length)
         // console.log(this.state.value.length)
         
@@ -29,6 +33,8 @@ class Search extends PureComponent {
     //Function to handle submit
     handleSubmit(event) {
         console.log('A name was submitted: ' + this.state.value);
+        this.results_array = [];
+        console.log("emptied");
 
         for (var i = 0; i < this.props.data.length - 1; i++) {
             if (this.props.data[i].keywords.includes(this.state.value)) {
@@ -39,6 +45,7 @@ class Search extends PureComponent {
         }
 
         event.preventDefault();
+        this.forceUpdate();
         this.setState({ submitted: true });
     }
 
@@ -53,7 +60,6 @@ class Search extends PureComponent {
                 <div className="search">
                     <form>
                         <input type="text" className="input" value={this.state.value} onChange={this.handleChange} />
-                        {/* <input type="submit" value="Submit" /> */}
                         <button onClick={this.handleSubmit} className="search-button">
                             <i className="fa fa-search fa-flip-horizontal" id="searchIcon"></i>
                         </button>
