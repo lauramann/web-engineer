@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "./Search.css";
 import Results from "./Results";
+import Favourites from "./Favourites";
 
 class Search extends PureComponent {
 
@@ -10,7 +11,7 @@ class Search extends PureComponent {
         this.empty_string = '';
 
         //Create our state variables
-        this.state = { value: '', submitted: false};
+        this.state = { value: '', submitted: false };
 
         //Bind functions
         this.handleChange = this.handleChange.bind(this);
@@ -19,15 +20,15 @@ class Search extends PureComponent {
 
     //Function to set value to input value
     handleChange(event) {
-        
-        if(this.state.value==='') {
+
+        if (this.state.value === '') {
             console.log("cleared");
         }
         this.setState({ value: event.target.value });
 
         // console.log(this.state.value.length)
         // console.log(this.state.value.length)
-        
+
     }
 
     //Function to handle submit
@@ -50,8 +51,8 @@ class Search extends PureComponent {
     }
 
     renderResults() {
-            return <Results results={this.results_array} />
-        
+        return <Results results={this.results_array} />
+
     }
 
     render() {
@@ -66,7 +67,7 @@ class Search extends PureComponent {
                     </form>
                     {this.state.submitted && this.renderResults()}
                 </div>
-
+                {/* <Favourites /> */}
             </div>
         );
 
