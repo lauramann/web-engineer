@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import "./Search.css";
 import Results from "./Results";
-import Favourites from "./Favourites";
+import Tester from "./Tester";
 
 class Search extends PureComponent {
 
@@ -67,7 +67,7 @@ class Search extends PureComponent {
                     </form>
                     {this.state.submitted && this.renderResults()}
                 </div>
-                {/* <Favourites /> */}
+                <Tester />
             </div>
         );
 

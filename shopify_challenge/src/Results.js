@@ -9,7 +9,8 @@ class Results extends PureComponent {
         this.state = {
             btn: 'greyStar',
             index: 0,
-            favourites: []
+            favourites: [],
+            results: []
         }
 
         this.reg = /\&.*?\;/ig;
@@ -35,7 +36,7 @@ class Results extends PureComponent {
     }
 
     getString(str) {
-        return str.replace(this.reg, '')
+        return str.replace(this.reg, '\n')
 
     }
 

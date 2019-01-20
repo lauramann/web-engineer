@@ -22,7 +22,7 @@ class Favourites extends PureComponent {
                         <div className="resultsDiv" key={index}>
                             <div className="leftDiv">
                                 <button className="star-button">
-                                    <i className="fa fa-star" id={this.state.btn}></i>
+                                    <i className="fa fa-star" id="greyStar"></i>
                                 </button>
                                 {item.title}
                             </div>
