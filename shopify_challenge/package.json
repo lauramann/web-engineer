@@ -16,11 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "aws s3 sync build/ s3://wonderful-app",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://shopify-challenge-78fa0.firebaseapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },

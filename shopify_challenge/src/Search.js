@@ -1,16 +1,16 @@
 import React, { PureComponent } from "react";
 import "./Search.css";
 import Results from "./Results";
-import Tester from "./Tester";
 
 class Search extends PureComponent {
 
     constructor(props) {
         super(props);
-        this.results_array = [];
-        this.empty_string = '';
 
-        //Create our state variables
+        //Results array for storing results to be displayed when user submits item
+        this.results_array = [];
+
+        //Create state variables for search submission
         this.state = { value: '', submitted: false };
 
         //Bind functions
@@ -20,41 +20,40 @@ class Search extends PureComponent {
 
     //Function to set value to input value
     handleChange(event) {
-
-        if (this.state.value === '') {
-            console.log("cleared");
-        }
         this.setState({ value: event.target.value });
-
-        // console.log(this.state.value.length)
-        // console.log(this.state.value.length)
-
     }
 
     //Function to handle submit
     handleSubmit(event) {
-        console.log('A name was submitted: ' + this.state.value);
+        //Empty results array from previous search
         this.results_array = [];
-        console.log("emptied");
 
+        //Search data retrieved for the item the user searched for
         for (var i = 0; i < this.props.data.length - 1; i++) {
             if (this.props.data[i].keywords.includes(this.state.value)) {
-                console.log(this.props.data[i])
+                //Print data to console for testing
+                // console.log(this.props.data[i])
+
+                //Push item to results array
                 this.results_array.push(this.props.data[i])
-                console.log(this.results_array.length)
             }
         }
 
         event.preventDefault();
+
+        //Force page to update on new search
         this.forceUpdate();
         this.setState({ submitted: true });
     }
 
     renderResults() {
-        return <Results results={this.results_array} />
+        //Display results component
+        //Passing results array and submitted value as props
+        return <Results results={this.results_array} submitted={this.state.submitted} />
 
     }
 
+    //Display search field and render results
     render() {
         return (
             <div>
@@ -65,9 +64,8 @@ class Search extends PureComponent {
                             <i className="fa fa-search fa-flip-horizontal" id="searchIcon"></i>
                         </button>
                     </form>
-                    {this.state.submitted && this.renderResults()}
+                    {this.renderResults()}
                 </div>
-                <Tester />
             </div>
         );
 
